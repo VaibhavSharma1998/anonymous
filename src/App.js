@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useState,useEffect} from 'react';
 import './App.css';
 
 function App() {
+  const localData = parseInt(localStorage.getItem("number")) || 1
+  const[count,setCount] = useState(localData)
+  let setClick = ()=>{
+    setCount((prevCount)=>{
+      let newCount = prevCount +1
+      localStorage.setItem("number",newCount)
+      return newCount
+    })
+  }
+  // useEffect(()=>{
+    
+  // },[count])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Vaibhav Sharma</h1>
+     <p>{count}</p>
+      <button onClick={setClick}>Click here</button>
     </div>
   );
 }
